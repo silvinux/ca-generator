@@ -72,8 +72,8 @@ openssl verify -CAfile /tmp/ca/intermediateCA/certs/complete_chain.pem /tmp/ca/e
 - Multiple Intermediate
 
 # Sources
-[How To create root pair](https://jamielinux.com/docs/openssl-certificate-authority/create-the-root-pair.html)
-[Frequently_used_OpenSSL_Commands](https://www.xolphin.com/support/OpenSSL/Frequently_used_OpenSSL_Commands)
-[openssl_privatekey](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssl_privatekey_module.html)
-[openssl_csr_module](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssl_csr_module.html)
-[openssl_certificate_module](https://docs.ansible.com/ansible/2.7/modules/openssl_certificate_module.html)
+* [How To create root pair](https://jamielinux.com/docs/openssl-certificate-authority/create-the-root-pair.html)
+* [Frequently_used_OpenSSL_Commands](https://www.xolphin.com/support/OpenSSL/Frequently_used_OpenSSL_Commands)
+* [openssl_privatekey](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssl_privatekey_module.html)
+* [openssl_csr_module](https://docs.ansible.com/ansible/latest/collections/community/crypto/openssl_csr_module.html)
+* [openssl_certificate_module](https://docs.ansible.com/ansible/2.7/modules/openssl_certificate_module.html)
