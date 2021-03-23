@@ -20,8 +20,14 @@
           dns_server:
             - "*.bcnconsulting.com"
             - server.bcnconsulting.com
-        wilcard_mad:
-          endentity_common_name: "*.madconsulting.com"
+        satellite:
+          endentity_common_name: "satellite.bcnconsulting.com"
           dns_server:
-            - "*.madconsulting.com"
-            - server.madconsulting.com
+            - satellite.pro.bcnconsulting.com"
+            - satellite.bcnconsulting.com
+        tower:
+          endentity_common_name: "lbtower.bcnconsulting.com"
+          dns_server:
+            - tower1.bcnconsulting.com
+            - tower2.bcnconsulting.com
+            - tower3.bcnconsulting.co
