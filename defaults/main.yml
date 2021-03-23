@@ -1,0 +1,36 @@
+---
+# defaults file for ca-gen
+ca_dir: /tmp/ca
+#ca_dir: /root/ca
+ca_root_file_name: ca-root
+ca_root_use_common_name_for_san: False
+ca_root_common_name: "Red Hat Consulting Root CA"
+ca_root_basic_constraints_critical: True
+ca_root_basic_constraints:
+  - "CA:TRUE"
+ca_root_key_usage_critical: True
+ca_root_key_usage:
+  - digitalSignature
+  - cRLSign
+  - keyCertSign
+
+## CA Intermediate
+ca_intermediate_file_name: ca-intermediate
+ca_intermediate_common_name: "Red Hat Consulting Intermediate CA"
+ca_intermediate_use_common_name_for_san: False
+ca_intermediate_basic_constraints:
+  - "CA:TRUE"
+  - "pathlen:0"
+ca_intermediate_key_usage_critical: True
+ca_intermediate_key_usage:
+  - digitalSignature
+  - cRLSign
+  - keyCertSign
+
+## CA Subject
+ca_subject_country: "ES"
+ca_subject_state_province: "Catalunya"
+ca_locality_name: "Barcelona"
+ca_organization_name: "Red Hat Consulting"
+ca_organizational_unit_name: "Red Hat Consulting Certificate Authority"
+

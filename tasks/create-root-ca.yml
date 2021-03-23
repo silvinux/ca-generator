@@ -1,0 +1,29 @@
+---
+- name: "[RootCA] | Generate Private key"
+  openssl_privatekey: 
+    path: "{{ ca_root_dir }}/private/{{ ca_root_file_name }}.key"
+
+- name: "[RootCA] | Generate CSR"
+  openssl_csr: 
+   path: "{{ ca_root_dir }}/csr/{{ ca_root_file_name }}.csr"
+   privatekey_path: "{{ ca_root_dir }}/private/{{ ca_root_file_name }}.key"
+   country_name: "{{ ca_subject_country }}"
+   state_or_province_name: "{{ ca_subject_state_province }}"
+   locality_name: "{{ ca_locality_name | default(omit) }}"
+   organization_name: "{{ ca_organization_name }}"
+   organizational_unit_name: "{{ ca_organizational_unit_name }}"
+   common_name: "{{ ca_root_common_name }}"
+   email_address: "{{ ca_root_email | default(omit) }}"
+   basic_constraints_critical: "{{ ca_root_basic_constraints_critical | default('True') }}"
+   basic_constraints: "{{ ca_root_basic_constraints }}"
+   use_common_name_for_san: "{{ ca_root_use_common_name_for_san }}"
+   key_usage_critical: "{{ ca_root_key_usage_critical | default('True') }}"
+   key_usage: "{{ ca_root_key_usage }}"
+    
+- name: "[RootCA] | Generate a self signed certificate"
+  openssl_certificate:
+   csr_path: "{{ ca_root_dir }}/csr/{{ ca_root_file_name }}.csr"
+   path: "{{ ca_root_dir }}/certs/{{ ca_root_file_name }}-cert-self-signed.pem"
+   privatekey_path: "{{ ca_root_dir }}/private/{{ ca_root_file_name }}.key"
+   provider: selfsigned
+   selfsigned_create_subject_key_identifier: always_create

@@ -1,0 +1,17 @@
+---
+- hosts: 127.0.0.1
+  connection: local 
+  gather_facts: false
+  roles:
+    - role: ../roles/ca-gen
+      endentity_list:
+        wilcard_bcn:
+          endentity_common_name: "*.bcnconsulting.com"
+          dns_server:
+            - "*.bcnconsulting.com"
+            - server.bcnconsulting.com
+        wilcard_mad:
+          endentity_common_name: "*.madconsulting.com"
+          dns_server:
+            - "*.madconsulting.com"
+            - server.madconsulting.com

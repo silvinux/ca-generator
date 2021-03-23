@@ -1,0 +1,28 @@
+---
+- name: "[Create Directory Structure] | Setting Paths"
+  set_fact:
+    ca_root_dir: "{{ ca_dir }}/rootCA"
+    ca_intermediate_dir: "{{ ca_dir }}/intermediateCA"
+    ca_endentity_dir: "{{ ca_dir }}/endEntity"
+
+- name: "[Create Directory Structure] | Setting lists"
+  set_fact:
+    ca_root_structure_dir:
+      - "{{ ca_root_dir }}"
+      - "{{ ca_intermediate_dir }}"
+      - "{{ ca_endentity_dir }}"
+    ca_structure_dir:
+      - certs
+      - csr
+      - private
+
+#- debug:
+#    msg: "{{ item.0  }}/{{ item.1 }}"
+#  loop: "{{ ca_root_structure_dir | product(ca_structure_dir) | list }}"
+
+- name: "[Create Directory Structure] | Create ssl directories"
+  file:
+    path: "{{ item.0  }}/{{ item.1 }}"
+    state: directory
+    mode: 0775
+  loop: "{{ ca_root_structure_dir | product(ca_structure_dir) | list }}"

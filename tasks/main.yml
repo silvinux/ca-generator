@@ -1,0 +1,29 @@
+---
+# tasks file for ca-gen
+- name: Include Tasks to create directory structure
+  include_tasks: create-directories.yml
+  args:
+    apply:
+      tags: create-directories
+  tags: create-directories
+
+- name: Include Tasks to create Root CA
+  include_tasks: create-root-ca.yml
+  args:
+    apply:
+      tags: create-root-ca
+  tags: create-root-ca
+
+- name: Include Tasks to create Intermediate CA
+  include_tasks: create-intermediate-ca.yml
+  args:
+    apply:
+      tags: create-intermediate-ca
+  tags: create-intermediate-ca
+
+- name: Include Tasks to create end-entity cert
+  include_tasks: create-end-entity-cert.yml
+  args:
+    apply:
+      tags: create-end-entity-cert
+  tags: create-end-entity-cert
