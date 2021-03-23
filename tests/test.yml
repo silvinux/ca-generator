@@ -3,7 +3,7 @@
   connection: local 
   gather_facts: false
   roles:
-    - role: ../roles/ca-gen
+    - role: ../../roles/ca-gen
       endentity_list:
         wilcard_bcn:
           endentity_common_name: "*.bcnconsulting.com"
