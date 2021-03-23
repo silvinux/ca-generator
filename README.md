@@ -29,12 +29,18 @@ $ ansible-playbook tests/test.ym  --tags create-directories,create-end-entity-ce
 ca/
 ├── endEntity
 │   ├── certs
+│   │   ├── satellite.pem
+│   │   ├── tower.pem
 │   │   ├── wilcard_bcn.pem
 │   │   └── wilcard_mad.pem
 │   ├── csr
+│   │   ├── satellite.csr
+│   │   ├── tower.csr
 │   │   ├── wilcard_bcn.csr
 │   │   └── wilcard_mad.csr
 │   └── private
+│       ├── satellite.key
+│       ├── tower.key
 │       ├── wilcard_bcn.key
 │       └── wilcard_mad.key
 ├── intermediateCA
