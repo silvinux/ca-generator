@@ -4,6 +4,7 @@
   gather_facts: false
   roles:
     - role: ../../roles/ca-gen
+      ca_dir: /tmp/ca
       ## RootCA
       ca_root_common_name: "Red Hat Consulting Root CA"
       ## IntermediateCA
@@ -15,19 +16,37 @@
       ca_organization_name: "Red Hat Consulting"
       ca_organizational_unit_name: "Red Hat Consulting Certificate Authority"
       endentity_list:
-        wilcard_bcn:
-          endentity_common_name: "*.bcnconsulting.com"
+        ocp-external:
+          endentity_common_name: "ocp-external.bcnconsulting.com"
           dns_server:
-            - "*.bcnconsulting.com"
-            - server.bcnconsulting.com
+            - "ocp-external.bcnconsulting.com"
+        wilcard_apps:
+          endentity_common_name: "*.apps.bcnconsulting.com"
+          dns_server:
+            - "*.apps.bcnconsulting.com"
+        wilcard_devs:
+          endentity_common_name: "*.devs.bcnconsulting.com"
+          dns_server:
+            - "*.devs.bcnconsulting.com"
         satellite:
           endentity_common_name: "satellite.bcnconsulting.com"
           dns_server:
             - satellite.pro.bcnconsulting.com"
             - satellite.bcnconsulting.com
+        satcapsule1:
+          endentity_common_name: "satcapsule1.bcnconsulting.com"
+          dns_server:
+            - lbsat.bcnconsulting.com"
+            - satcapsule1.bcnconsulting.com
+        satcapsule2:
+          endentity_common_name: "satcapsule2.bcnconsulting.com"
+          dns_server:
+            - lbsat.bcnconsulting.com"
+            - satcapsule2.bcnconsulting.com
         tower:
           endentity_common_name: "lbtower.bcnconsulting.com"
           dns_server:
+            - lbtower.bcnconsulting.com
             - tower1.bcnconsulting.com
             - tower2.bcnconsulting.com
-            - tower3.bcnconsulting.co
+            - tower3.bcnconsulting.com
