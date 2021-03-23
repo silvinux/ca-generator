@@ -39,5 +39,5 @@
 
 - name: "[IntermediateCA] | Write complete chain to disk"
   copy:
-    dest: "{{ ca_intermediate_dir }}/certs/complete_chain.pem"
+    dest: "{{ ca_intermediate_dir }}/certs/ca-chain.pem"
     content: "{{ ''.join(chaincert.complete_chain) }}"

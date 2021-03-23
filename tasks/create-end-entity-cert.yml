@@ -24,8 +24,11 @@
    csr_path: "{{ ca_endentity_dir }}/csr/{{ item.key }}.csr"
    path: "{{ ca_endentity_dir }}/certs/{{ item.key }}.pem"
    privatekey_path: "{{ ca_endentity_dir }}/private/{{ item.key }}.key"
+
+
    provider: ownca
    ownca_create_subject_key_identifier: always_create
-   ownca_path: "{{ ca_root_dir }}/certs/{{ ca_root_file_name }}-cert-self-signed.pem"
-   ownca_privatekey_path: "{{ ca_root_dir }}/private/{{ ca_root_file_name }}.key"
+   ownca_path: "{{ ca_intermediate_dir }}/certs/{{ ca_intermediate_file_name }}.pem"
+   ownca_privatekey_path: "{{ ca_intermediate_dir }}/private/{{ ca_intermediate_file_name }}.key"
+
   loop: "{{ lookup('dict', endentity_list) }}"
