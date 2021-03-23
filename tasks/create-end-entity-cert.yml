@@ -1,11 +1,4 @@
 ---
-- debug:
-    msg: 
-      - "{{ item.key }}"
-      - "{{ item.value.endentity_common_name }}"
-      - "{{ item.value.dns_server | map('regex_replace', '^', 'DNS:') | list}}"
-  loop: "{{ lookup('dict', endentity_list) }}"
-
 - name: "[End-Entity] | Generate Private key"
   openssl_privatekey: 
     path: "{{ ca_endentity_dir }}/private/{{ item.key }}.key"
@@ -36,35 +29,3 @@
    ownca_path: "{{ ca_root_dir }}/certs/{{ ca_root_file_name }}-cert-self-signed.pem"
    ownca_privatekey_path: "{{ ca_root_dir }}/private/{{ ca_root_file_name }}.key"
   loop: "{{ lookup('dict', endentity_list) }}"
-
-#  - name: "[End-Entity] | Create key pair for the end-entity"
-#    openssl_privatekey:
-#      path: "/tmp/CA/server.rsa"
-#      size: 2048
-#
-#  - name: Create certificate signing request
-#    openssl_csr:
-#      path: "/tmp/CA/server.csr"
-#      privatekey_path: "/tmp/CA/server.rsa"
-#      country_name: ES
-#      state_or_province_name: Catalunya
-#      locality_name: Barcelona
-#      organization_name: Red Hat
-#      organizational_unit_name: Red Hat Consulting Certificate Authority
-#      common_name: server.bcnconsulting.com
-#      email_address: "server@bcnconsulting.com"
-#      subject_alt_name: "{{ item.value | map('regex_replace', '^', 'DNS:') | list }}"
-#    with_dict:
-#      dns_server:
-#      - "*.bcnconsulting.com"
-#      - server.bcnconsulting.com
-#
-#  - name: Create certificate for server
-#    openssl_certificate:
-#      csr_path: "/tmp/CA/server.csr"
-#      path: "/tmp/CA/server-self.pem"
-#      privatekey_path: "/tmp/CA/server.rsa"
-#      provider: ownca
-#      ownca_create_subject_key_identifier: always_create
-#      ownca_path: "/tmp/CA/intermediate-ca-cert-self-signed.pem"
-#      ownca_privatekey_path: "/tmp/CA/intermediate-ca.key.pem"    

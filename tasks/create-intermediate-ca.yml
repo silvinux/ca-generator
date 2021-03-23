@@ -37,9 +37,6 @@
     - "{{ ca_root_dir }}/certs/"
   register: chaincert
 
-- debug:
-    msg: "{{ chaincert }}"
-
 - name: "[IntermediateCA] | Write complete chain to disk"
   copy:
     dest: "{{ ca_intermediate_dir }}/certs/complete_chain.pem"

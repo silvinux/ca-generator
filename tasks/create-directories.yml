@@ -16,10 +16,6 @@
       - csr
       - private
 
-#- debug:
-#    msg: "{{ item.0  }}/{{ item.1 }}"
-#  loop: "{{ ca_root_structure_dir | product(ca_structure_dir) | list }}"
-
 - name: "[Create Directory Structure] | Create ssl directories"
   file:
     path: "{{ item.0  }}/{{ item.1 }}"
