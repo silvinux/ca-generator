@@ -3,8 +3,8 @@
   connection: local 
   gather_facts: false
   roles:
-    - role: ../../roles/ca-gen
-      ca_dir: /tmp/ca
+    - role: ../../ca-generator/
+      ca_dir: /root/ca
       ## RootCA
       ca_root_common_name: "Red Hat Consulting Root CA"
       ## IntermediateCA
@@ -28,20 +28,24 @@
           endentity_common_name: "*.devs.bcnconsulting.com"
           dns_server:
             - "*.devs.bcnconsulting.com"
+        wilcard_ints:
+          endentity_common_name: "*.ints.bcnconsulting.com"
+          dns_server:
+            - "*.ints.bcnconsulting.com"
         satellite:
           endentity_common_name: "satellite.bcnconsulting.com"
           dns_server:
-            - satellite.pro.bcnconsulting.com"
+            - satellite.pro.bcnconsulting.com
             - satellite.bcnconsulting.com
         satcapsule1:
           endentity_common_name: "satcapsule1.bcnconsulting.com"
           dns_server:
-            - lbsat.bcnconsulting.com"
+            - lbsat.bcnconsulting.com
             - satcapsule1.bcnconsulting.com
         satcapsule2:
           endentity_common_name: "satcapsule2.bcnconsulting.com"
           dns_server:
-            - lbsat.bcnconsulting.com"
+            - lbsat.bcnconsulting.com
             - satcapsule2.bcnconsulting.com
         tower:
           endentity_common_name: "lbtower.bcnconsulting.com"
