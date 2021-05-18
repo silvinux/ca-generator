@@ -31,7 +31,7 @@ playbook: tests/test.yml
       ca_organization_name: "Red Hat Consulting"
       ca_organizational_unit_name: "Red Hat Consulting Certificate Authority"
       endentity_list:
-        certificate_file_name: It should have an identifier name without any special character or whitespace.  
+        - certificate_file_name: It should have an identifier name without any special character or whitespace.  
           endentity_common_name: end-entity CN
           dns_server:
             - DNS list that certificate should have
@@ -101,7 +101,6 @@ Ry1DOyNPsxQxJByQBcwrrotBUyzto4xw9lNFghGkomVV+kZiNZGQmBPpXuSAeBdx
 ti6d6Nu8JqlWT2PtbkIO2NOGykB9Zs33EDoTbfaTpI1HAPYzO/coPQDvWbS38rPT
 9MLw6ibcT0w8JMg0VDQxVxz+TUNh8Sn48F3E/8NxbeIAeIiDgv3ubyW5c8k=
 -----END RSA PRIVATE KEY-----
-
 
 $ openssl req -text -noout -verify -in /tmp/ca/rootCA/csr/ca-root.csr 
 verify OK
