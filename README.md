@@ -31,7 +31,7 @@ playbook: tests/test.yml
       ca_organization_name: "Red Hat Consulting"
       ca_organizational_unit_name: "Red Hat Consulting Certificate Authority"
       endentity_list:
-        certificate_file_name: It should have an identifier name without any special character or whitespace.  
+        - certificate_file_name: It should have an identifier name without any special character or whitespace.  
           endentity_common_name: end-entity CN
           dns_server:
             - DNS list that certificate should have
