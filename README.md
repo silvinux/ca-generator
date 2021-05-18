@@ -102,7 +102,6 @@ ti6d6Nu8JqlWT2PtbkIO2NOGykB9Zs33EDoTbfaTpI1HAPYzO/coPQDvWbS38rPT
 9MLw6ibcT0w8JMg0VDQxVxz+TUNh8Sn48F3E/8NxbeIAeIiDgv3ubyW5c8k=
 -----END RSA PRIVATE KEY-----
 
-
 $ openssl req -text -noout -verify -in /tmp/ca/rootCA/csr/ca-root.csr 
 verify OK
 Certificate Request:
