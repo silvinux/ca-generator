@@ -27,6 +27,13 @@ ca_intermediate_key_usage:
   - cRLSign
   - keyCertSign
 
+# https://access.redhat.com/solutions/3699341 - katello-cert-check utility failing on certificate does not allow for the Digital Signature key usage
+end_entity_cert__key_usage:
+  - digitalSignature
+  - nonRepudiation
+  - keyEncipherment
+  - dataEncipherment
+
 ## CA Subject
 ca_subject_country: "ES"
 ca_subject_state_province: "Catalunya"

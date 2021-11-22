@@ -17,6 +17,7 @@
     common_name: "{{ item.value.endentity_common_name }}"
     email_address: "{{ item.value.endentity_email | default(omit) }}"
     subject_alt_name: "{{ item.value.dns_server | map('regex_replace', '^', 'DNS:') | list }}"
+    key_usage: "{{ end_entity_cert__key_usage }}"
   loop: "{{ lookup('dict', endentity_list) }}"
 
 - name: "[End-Entity] | Generate end-entity certificate signed with your own CA certificate"
