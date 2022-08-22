@@ -1,9 +1,9 @@
 ---
 - name: "[End-Entity] | Generate Private key"
-  openssl_privatekey: 
+  openssl_privatekey:
     path: "{{ ca_endentity_dir }}/private/{{ item.key }}.key"
     size: "{{ ca_endentity_size |default('2048') }}"
-  loop: "{{ lookup('dict', endentity_list) }}"
+  loop: "{{ lookup('dict', endentity_list, wantlist=True) }}"
 
 - name: "[End-Entity] | Generate CSR"
   openssl_csr:
@@ -18,7 +18,7 @@
     email_address: "{{ item.value.endentity_email | default(omit) }}"
     subject_alt_name: "{{ item.value.dns_server | map('regex_replace', '^', 'DNS:') | list }}"
     key_usage: "{{ end_entity_cert__key_usage }}"
-  loop: "{{ lookup('dict', endentity_list) }}"
+  loop: "{{ lookup('dict', endentity_list, wantlist=True) }}"
 
 - name: "[End-Entity] | Generate end-entity certificate signed with your own CA certificate"
   openssl_certificate:
@@ -32,4 +32,4 @@
    ownca_path: "{{ ca_intermediate_dir }}/certs/{{ ca_intermediate_file_name }}.pem"
    ownca_privatekey_path: "{{ ca_intermediate_dir }}/private/{{ ca_intermediate_file_name }}.key"
 
-  loop: "{{ lookup('dict', endentity_list) }}"
+  loop: "{{ lookup('dict', endentity_list, wantlist=True) }}"
