@@ -17,8 +17,13 @@ playbook: tests/test.yml
   play #1 (127.0.0.1): 127.0.0.1	TAGS: []
       TASK TAGS: [create-directories, create-end-entity-cert, create-intermediate-ca, create-root-ca]
 ```
+### Requirements
 
-### variables to take into account.
+```
+$ ansible-galaxy collection install community.crypto -p collections
+```
+
+### Variables to consider
 
 ```bash
       ca_dir: Directory where the certificates will be generated.
@@ -31,13 +36,13 @@ playbook: tests/test.yml
       ca_organization_name: "Red Hat Consulting"
       ca_organizational_unit_name: "Red Hat Consulting Certificate Authority"
       endentity_list:
-        - certificate_file_name: It should have an identifier name without any special character or whitespace.  
+        - certificate_file_name: It should have an identifier name without any special character or whitespace.
           endentity_common_name: end-entity CN
           dns_server:
             - DNS list that certificate should have
 ```
 
-## Playbook. 
+## Playbook.
 ### Playbook example.
 
 It could be found at role/ca-generator/tests/test.yml
@@ -92,7 +97,7 @@ $ tree /tmp/ca/
     └── private
         └── ca-root.key
 
-$ openssl rsa -in /tmp/ca/rootCA/private/ca-root.key 
+$ openssl rsa -in /tmp/ca/rootCA/private/ca-root.key
 writing RSA key
 -----BEGIN RSA PRIVATE KEY-----
 MIIJKAIBAAKCAgEAtuJ4+nEctrE9sybTWiIb5zZFbkdyFucTZXW0Pu5Ho5byAVDp
@@ -102,7 +107,7 @@ ti6d6Nu8JqlWT2PtbkIO2NOGykB9Zs33EDoTbfaTpI1HAPYzO/coPQDvWbS38rPT
 9MLw6ibcT0w8JMg0VDQxVxz+TUNh8Sn48F3E/8NxbeIAeIiDgv3ubyW5c8k=
 -----END RSA PRIVATE KEY-----
 
-$ openssl req -text -noout -verify -in /tmp/ca/rootCA/csr/ca-root.csr 
+$ openssl req -text -noout -verify -in /tmp/ca/rootCA/csr/ca-root.csr
 verify OK
 Certificate Request:
     Data:
@@ -113,7 +118,7 @@ Certificate Request:
                 Public-Key: (4096 bit)
                 Modulus:
                     00:b6:e2:78:fa:71:1c:b6:b1:3d:b3:26:d3:5a:22:
-                    ...  
+                    ...
                     64:67:db:29:48:7d:a6:78:f9:b9:b5:76:69:66:4f:
                     35:84:95
                 Exponent: 65537 (0x10001)
@@ -128,7 +133,7 @@ Certificate Request:
          ...
          c7:98:57:2a:77:53:2d:f9
 
-$ openssl x509 -text -noout -in /tmp/ca/rootCA/certs/ca-root-cert-self-signed.pem 
+$ openssl x509 -text -noout -in /tmp/ca/rootCA/certs/ca-root-cert-self-signed.pem
 Certificate:
     Data:
         Version: 3 (0x2)
@@ -154,7 +159,7 @@ Certificate:
                 Digital Signature, Certificate Sign, CRL Sign
             X509v3 Basic Constraints: critical
                 CA:TRUE
-            X509v3 Subject Key Identifier: 
+            X509v3 Subject Key Identifier:
                 D9:AE:54:D3:A1:51:C1:7C:46:34:4C:AE:56:E0:B4:AC:E4:B7:A2:7E
     Signature Algorithm: sha256WithRSAEncryption
          19:01:92:de:42:a0:4a:95:11:ab:09:6f:31:d5:18:e3:72:8d:
@@ -199,7 +204,7 @@ MIIJKgIBAAKCAgEA6g1BfdTdItOp0hp+ZoFSSI2roayNN8+/i1kL4mRK9f8kzTRT
 4SO9ZJqKgYw7RekWSRLJNoSjQPvF+AGRQet5ij1nUCbFx6UQVLg4EUlLcCW8Qw==
 -----END RSA PRIVATE KEY-----
 
-$ openssl req -text -noout -verify -in /tmp/ca/intermediateCA/csr/ca-intermediate.csr 
+$ openssl req -text -noout -verify -in /tmp/ca/intermediateCA/csr/ca-intermediate.csr
 verify OK
 Certificate Request:
     Data:
@@ -251,9 +256,9 @@ Certificate:
                 Digital Signature, Certificate Sign, CRL Sign
             X509v3 Basic Constraints: critical
                 CA:TRUE, pathlen:0
-            X509v3 Subject Key Identifier: 
+            X509v3 Subject Key Identifier:
                 51:C6:0A:28:F6:7F:C0:45:F5:B0:3E:29:88:59:15:FC:31:4D:2F:33
-            X509v3 Authority Key Identifier: 
+            X509v3 Authority Key Identifier:
                 keyid:D9:AE:54:D3:A1:51:C1:7C:46:34:4C:AE:56:E0:B4:AC:E4:B7:A2:7E
 
     Signature Algorithm: sha256WithRSAEncryption
@@ -309,7 +314,7 @@ $ tree /tmp/ca/
     └── private
         └── ca-root.key
 
-$ openssl x509 -text -noout -in /tmp/ca/endEntity/certs/tower.pem 
+$ openssl x509 -text -noout -in /tmp/ca/endEntity/certs/tower.pem
 Certificate:
     Data:
         Version: 3 (0x2)
@@ -331,11 +336,11 @@ Certificate:
                     ca:d7
                 Exponent: 65537 (0x10001)
         X509v3 extensions:
-            X509v3 Subject Alternative Name: 
+            X509v3 Subject Alternative Name:
                 DNS:lbtower.bcnconsulting.com, DNS:tower1.bcnconsulting.com, DNS:tower2.bcnconsulting.com, DNS:tower3.bcnconsulting.com
-            X509v3 Subject Key Identifier: 
+            X509v3 Subject Key Identifier:
                 DA:06:CC:76:89:49:FF:4F:07:AC:40:2F:25:39:30:0E:6B:36:26:E5
-            X509v3 Authority Key Identifier: 
+            X509v3 Authority Key Identifier:
                 keyid:D9:AE:54:D3:A1:51:C1:7C:46:34:4C:AE:56:E0:B4:AC:E4:B7:A2:7E
 
     Signature Algorithm: sha256WithRSAEncryption
@@ -345,15 +350,15 @@ Certificate:
 ```
 
 
-To verify the end-entity certificate we should use the complete chain certificate, if we don't it will fail.   
+To verify the end-entity certificate we should use the complete chain certificate, if we don't it will fail.
 
 ```bash
-$ openssl verify -CAfile /tmp/ca/intermediateCA/certs/ca-intermediate.pem /tmp/ca/endEntity/certs/tower.pem 
+$ openssl verify -CAfile /tmp/ca/intermediateCA/certs/ca-intermediate.pem /tmp/ca/endEntity/certs/tower.pem
 /tmp/ca/endEntity/certs/tower.pem: C = ES, ST = Catalunya, L = Barcelona, O = Red Hat Consulting, OU = Red Hat Consulting Certificate Authority, CN = lbtower.bcnconsulting.com
 error 20 at 0 depth lookup:unable to get local issuer certificate
-      
-$ openssl verify -CAfile /tmp/ca/intermediateCA/certs/ca-chain.pem /tmp/ca/endEntity/certs/tower.pem 
-/tmp/ca/endEntity/certs/tower.pem: OK         
+
+$ openssl verify -CAfile /tmp/ca/intermediateCA/certs/ca-chain.pem /tmp/ca/endEntity/certs/tower.pem
+/tmp/ca/endEntity/certs/tower.pem: OK
 ```
 
 # ToDo
