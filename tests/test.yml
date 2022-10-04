@@ -47,10 +47,18 @@
           dns_server:
             - lbsat.bcnconsulting.com
             - satcapsule2.bcnconsulting.com
-        tower:
-          endentity_common_name: "lbtower.bcnconsulting.com"
+        automationhub:
+          endentity_common_name: "automationhub.bcnconsulting.com"
           dns_server:
-            - lbtower.bcnconsulting.com
-            - tower1.bcnconsulting.com
-            - tower2.bcnconsulting.com
-            - tower3.bcnconsulting.com
+            - "automationhub.bcnconsulting.com"
+        aapdb:
+          endentity_common_name: "aapdb.bcnconsulting.com"
+          dns_server:
+            - "aapdb.bcnconsulting.com"
+        controller:
+          endentity_common_name: "lbcontroller.bcnconsulting.com"
+          dns_server:
+            - lbcontroller.bcnconsulting.com
+            - aap1.bcnconsulting.com
+            - aap2.bcnconsulting.com
+            - aap3.bcnconsulting.com
